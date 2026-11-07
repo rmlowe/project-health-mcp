@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "project-health-mcp",
+  "workers_dev": true,
+  "preview_urls": false,
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": { "MCP_AUTH_MODE": "disabled" },
+  "observability": { "enabled": false }
+}
