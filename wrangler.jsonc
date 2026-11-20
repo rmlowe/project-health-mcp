@@ -9,7 +9,9 @@
   "vars": {
     "MCP_AUTH_MODE": "access",
     "MCP_ACCESS_TEAM_DOMAIN": "https://frosty-poetry-2e73.cloudflareaccess.com",
-    "MCP_ACCESS_AUD": "4317b76856f1bf9a69c151a3414b603336eed311807584cc0b254bb6a3aba97e"
+    "MCP_ACCESS_AUD": "4317b76856f1bf9a69c151a3414b603336eed311807584cc0b254bb6a3aba97e",
+    "HOME_CLIMATE_MCP_URL": "https://home-climate-dashboard.robertmlowe.workers.dev/mcp",
+    "HOME_CLIMATE_ACCESS_CLIENT_ID": "92c517b5e8809a1365376be8066f363c.access"
   },
   "observability": { "enabled": false }
 }
