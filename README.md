@@ -1,6 +1,6 @@
 # Project Health MCP
 
-Read-only Cloudflare Worker reporting deployment health, collection freshness and recovery evidence. First supported project: **Roman Mission Monitor**. No database, scheduler, dashboard or automatic remediation.
+Read-only Cloudflare Worker reporting deployment health, collection freshness and recovery evidence. Supported projects are **Roman Mission Monitor** and **Home Climate Dashboard**. No database, scheduler, dashboard or automatic remediation.
 
 ## Tool
 
@@ -14,6 +14,14 @@ Returns `healthy`, `degraded` or `unknown`, a check timestamp, independent deplo
 - **Freshness:** use the oldest aggregate/blog/commissioning successful-check timestamp. More than three hours old is degraded. The same tolerance applies to the last completed workflow. This matches Roman's hourly schedule and existing three-hour policy. Future timestamps beyond 60 seconds, missing sources and schema mismatches are unknown. NASA article age is irrelevant.
 
 Coverage is bounded, not an incident archive. Only the latest attempt of each returned run is assessed; a successful rerun hides its prior failed attempt. Failures older than the 20-run window are not listed. Healthy does not validate scientific interpretation or browser rendering. Checks are not an atomic snapshot; retry if deployment is in flight.
+
+### Home Climate collection health
+
+Call `get_project_health({ "project": "home-climate-dashboard" })` to query stored collection health.
+The Worker calls `get_collection_health` using `HOME_CLIMATE_MCP_URL`, `HOME_CLIMATE_ACCESS_CLIENT_ID`
+and the encrypted production secret `HOME_CLIMATE_ACCESS_CLIENT_SECRET`. The result includes the
+upstream collection status, retrieval timestamp and per-room freshness flags. Stale collections or
+valid readings are degraded. Missing data and unsuccessful checks are unknown.
 
 ## Local validation
 
